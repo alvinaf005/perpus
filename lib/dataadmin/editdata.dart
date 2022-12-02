@@ -1,6 +1,5 @@
+import '../dataadmin/admin.dart';
 import '../halamannavigasi/beranda.dart';
-import '../main.dart';
-import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,7 +9,7 @@ class EditData extends StatefulWidget {
   EditData({required this.list, required this.index});
 
   @override
-  _EditDataState createState() => new _EditDataState();
+  _EditDataState createState() => _EditDataState();
 }
 
 class _EditDataState extends State<EditData> {
@@ -25,7 +24,7 @@ class _EditDataState extends State<EditData> {
   void editData() {
     var url = Uri.parse('http://10.0.2.2/bukuperpus/editdata.php');
     http.post(url, body: {
-      "id": widget.list[widget.index]['id'],
+      "id_buku": widget.list[widget.index]['id_buku'],
       "judul_buku": controllerJudul.text,
       "pengarang": controllerPengarang.text,
       "penerbit": controllerPenerbit.text,
@@ -38,75 +37,73 @@ class _EditDataState extends State<EditData> {
   @override
   void initState() {
     controllerID =
-        new TextEditingController(text: widget.list[widget.index]['id']);
-    controllerJudul = new TextEditingController(
-        text: widget.list[widget.index]['judul_buku']);
+        TextEditingController(text: widget.list[widget.index]['id_buku']);
+    controllerJudul =
+        TextEditingController(text: widget.list[widget.index]['judul_buku']);
     controllerPengarang =
-        new TextEditingController(text: widget.list[widget.index]['pengarang']);
+        TextEditingController(text: widget.list[widget.index]['pengarang']);
     controllerPenerbit =
-        new TextEditingController(text: widget.list[widget.index]['penerbit']);
-    controllerTahun = new TextEditingController(
-        text: widget.list[widget.index]['tahun_terbit']);
-    controllerTempat = new TextEditingController(
-        text: widget.list[widget.index]['tempat_terbit']);
+        TextEditingController(text: widget.list[widget.index]['penerbit']);
+    controllerTahun =
+        TextEditingController(text: widget.list[widget.index]['tahun_terbit']);
+    controllerTempat =
+        TextEditingController(text: widget.list[widget.index]['tempat_terbit']);
     controllerRak =
-        new TextEditingController(text: widget.list[widget.index]['rak']);
+        TextEditingController(text: widget.list[widget.index]['rak']);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Edit Data Buku"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Edit Data Buku"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: new ListView(
+        child: ListView(
           children: <Widget>[
-            new TextField(
+            TextField(
               controller: controllerID,
-              decoration:
-                  new InputDecoration(hintText: "Barcode", labelText: "ID"),
+              decoration: InputDecoration(hintText: "Barcode", labelText: "ID"),
             ),
-            new TextField(
+            TextField(
               controller: controllerJudul,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Judul Buku", labelText: "Judul Buku"),
             ),
-            new TextField(
+            TextField(
               controller: controllerPengarang,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Pengarang", labelText: "Pengarang"),
             ),
-            new TextField(
+            TextField(
               controller: controllerPenerbit,
-              decoration: new InputDecoration(
-                  hintText: "Penerbit", labelText: "Penerbit"),
+              decoration:
+                  InputDecoration(hintText: "Penerbit", labelText: "Penerbit"),
             ),
-            new TextField(
+            TextField(
               controller: controllerTahun,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Tahun Terbit", labelText: "Tahun Terbit"),
             ),
-            new TextField(
+            TextField(
               controller: controllerTempat,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Tempat Terbit", labelText: "Tempat Terbit"),
             ),
-            new TextField(
+            TextField(
               controller: controllerRak,
-              decoration:
-                  new InputDecoration(hintText: "Rak", labelText: "Rak"),
+              decoration: InputDecoration(hintText: "Rak", labelText: "Rak"),
             ),
-            new Padding(padding: const EdgeInsets.all(15)),
-            new RaisedButton(
-              child: new Text("EDIT"),
+            Padding(padding: const EdgeInsets.all(15)),
+            RaisedButton(
+              child: Text("EDIT"),
               color: Colors.green,
               onPressed: () {
                 editData();
-                Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => new BerandaPage()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => AdminPage()));
               },
             )
           ],

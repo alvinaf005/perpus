@@ -1,19 +1,47 @@
+import '../datapengguna/masukpage.dart';
 import 'package:flutter/material.dart';
-import 'package:perpus/DataBuku/detailbuku.dart';
-import 'package:perpus/halamannavigasi/beranda.dart';
-import 'package:perpus/halamannavigasi/riwayat.dart';
-import 'package:perpus/halamannavigasi/return.dart';
-import 'package:perpus/halamannavigasi/profile.dart';
-import 'package:perpus/DataBuku/adddata.dart';
+import '../halamannavigasi/beranda.dart';
+import '../halamannavigasi/riwayat.dart';
+import '../halamannavigasi/return.dart';
+import '../halamannavigasi/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IndexingPage extends StatefulWidget {
-  const IndexingPage({Key? key}) : super(key: key);
   @override
   _IndexingPageState createState() => _IndexingPageState();
 }
 
 class _IndexingPageState extends State<IndexingPage> {
+  String id_pengguna = "";
+  String nama = "";
+  String nim = "";
+  String fakultas = "";
+  String jurusan = "";
+  String prodi = "";
+  String domisili = "";
+  String no_telp = "";
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getCred();
+  }
+
+  void getCred() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      id_pengguna = pref.getString("id_pengguna")!;
+      nama = pref.getString("nama")!;
+      nim = pref.getString("nim")!;
+      fakultas = pref.getString("fakultas")!;
+      jurusan = pref.getString("jurusan")!;
+      prodi = pref.getString("prodi")!;
+      domisili = pref.getString("domisili")!;
+      no_telp = pref.getString("no_telp")!;
+    });
+  }
+
   final List<Widget> _children = [
     BerandaPage(),
     RiwayatPage(),
@@ -58,24 +86,5 @@ class _IndexingPageState extends State<IndexingPage> {
           showUnselectedLabels: true,
           onTap: onTabTapped,
         ));
-  }
-}
-
-class ListViewPage extends StatelessWidget {
-  const ListViewPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Infinite List"),
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return ListTile(
-              leading: Text("$index"), title: Text("Number $index"));
-        },
-      ),
-    );
   }
 }

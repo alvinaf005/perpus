@@ -1,4 +1,4 @@
-import 'package:perpus/halamannavigasi/beranda.dart';
+import '../halamannavigasi/beranda.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

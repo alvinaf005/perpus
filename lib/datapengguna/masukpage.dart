@@ -1,9 +1,13 @@
 import 'dart:convert';
+import '../dataadmin/admin.dart';
+import '../datapengguna/getpengguna.dart';
 import 'package:flutter/material.dart';
-import 'package:perpus/datapengguna/DaftarPage.dart';
+import '../datapengguna/DaftarPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:perpus/halamannavigasi/indexing.dart';
+import '../halamannavigasi/indexing.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MasukPage extends StatefulWidget {
   const MasukPage({Key? key}) : super(key: key);
@@ -14,33 +18,69 @@ class MasukPage extends StatefulWidget {
 class _MasukPageState extends State<MasukPage> {
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+
+  String result = '';
+  String id_pengguna = '';
+  String nama = '';
+  String nim = '';
+  String fakultas = '';
+  String jurusan = '';
+  String prodi = '';
+  String domisili = '';
+  String no_telp = '';
   Future login() async {
     var url = Uri.http("10.0.2.2", '/bukuperpus/login.php', {'q': '{http}'});
     final response = await http.post(url, body: {
       "username": txtUsername.text,
       "password": txtPassword.text,
     });
-    var data = json.decode(response.body);
-    if (data.toString() == "Success") {
+    final data = json.decode(response.body);
+    if (data.toString() == "Admin") {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => AdminPage()),
+          (route) => false);
+    } else if (data.toString() == "Success") {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      await pref.setString("id_pengguna", id_pengguna);
+      await pref.setString("nama", nama);
+      await pref.setString("nim", nim);
+      await pref.setString("fakultas", fakultas);
+      await pref.setString("jurusan", jurusan);
+      await pref.setString("prodi", prodi);
+      await pref.setString("domisili", domisili);
+      await pref.setString("no_telp", no_telp);
       Fluttertoast.showToast(
-        msg: 'Berhasil Masuk',
+        msg: 'Selamat Datang ' + nama,
         backgroundColor: Colors.green,
         textColor: Colors.white,
         toastLength: Toast.LENGTH_SHORT,
       );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => IndexingPage(),
-        ),
-      );
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => IndexingPage()),
+          (route) => false);
     } else {
       Fluttertoast.showToast(
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        msg: 'Gagal Masuk',
+        msg: 'Masukkan Username dan Password dengan benar',
         toastLength: Toast.LENGTH_SHORT,
       );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
+
+  void checkLogin() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? val = pref.getString("nama");
+    if (val != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => IndexingPage()),
+          (route) => false);
     }
   }
 
@@ -68,7 +108,6 @@ class _MasukPageState extends State<MasukPage> {
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.normal,
                       fontSize: 24,
-                      color: Color(0xff3a57e8),
                     ),
                   ),
                 ),
@@ -212,8 +251,21 @@ class _MasukPageState extends State<MasukPage> {
                       Expanded(
                         flex: 1,
                         child: RaisedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             login();
+                            GetProfile(username: txtUsername.text)
+                                .getProfile()
+                                .then((value) {
+                              id_pengguna = value[0]['id_pengguna'].toString();
+                              nama = value[0]['nama'];
+                              nim = value[0]['nim'];
+                              fakultas = value[0]['fakultas'];
+                              jurusan = value[0]['jurusan'];
+                              prodi = value[0]['prodi'];
+                              domisili = value[0]['domisili'];
+                              no_telp = value[0]['no_telp'];
+                              setState(() {});
+                            });
                           },
                           color: Color(0xff3a57e8),
                           elevation: 0,

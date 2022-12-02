@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crudbuku">
+    package="com.example.perpus">
    <application
-        android:label="crudbuku"
+        android:label="perpus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

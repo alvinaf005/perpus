@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:perpus/datapengguna/masukpage.dart';
+import '../datapengguna/masukpage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
@@ -45,7 +45,14 @@ class _DaftarPageState extends State<DaftarPage> {
         msg: 'Nama Pengguna telah terdaftar!',
         toastLength: Toast.LENGTH_SHORT,
       );
-    } else {
+    } else if (data == "Empty") {
+      Fluttertoast.showToast(
+        backgroundColor: Colors.orange,
+        textColor: Colors.white,
+        msg: 'Masukkan data dengan benar!',
+        toastLength: Toast.LENGTH_SHORT,
+      );
+    } else if (data == "Success") {
       Fluttertoast.showToast(
         backgroundColor: Colors.green,
         textColor: Colors.white,

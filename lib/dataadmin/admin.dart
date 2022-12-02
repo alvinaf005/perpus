@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import '../datapengguna/detailbuku.dart';
+import '../dataadmin/adddata.dart';
+import '../datapengguna/masukpage.dart';
+import '../dataadmin/detailbuku.dart';
 
-class BerandaPage extends StatefulWidget {
+class AdminPage extends StatefulWidget {
+  const AdminPage({Key? key}) : super(key: key);
+
   @override
-  _BerandaPageState createState() => _BerandaPageState();
+  _AdminPageState createState() => _AdminPageState();
 }
 
-class _BerandaPageState extends State<BerandaPage>
-    with AutomaticKeepAliveClientMixin {
-  Future<List> getData() async {
+class _AdminPageState extends State<AdminPage> {
+  Future<List> getdata() async {
     final response =
         await http.get(Uri.parse('http://10.0.2.2/bukuperpus/getdata.php'));
     return jsonDecode(response.body);
@@ -30,8 +32,7 @@ class _BerandaPageState extends State<BerandaPage>
                 borderRadius: BorderRadius.zero,
               ),
               title: const Text(
-                "Beranda",
-                // ignore: unnecessary_const
+                "Pengelola Buku (Admin)",
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
@@ -39,9 +40,30 @@ class _BerandaPageState extends State<BerandaPage>
                   color: Color(0xfff9f9f9),
                 ),
               ),
+              actions: [
+                Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: OutlinedButton.icon(
+                      onPressed: () async {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => MasukPage()),
+                            (route) => false);
+                      },
+                      icon: Icon(Icons.logout,
+                          color: Color(0xffffffff), size: 26),
+                      label: Text(""),
+                    )),
+              ],
+            ),
+            floatingActionButton: new FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => Navigator.of(context).push(new MaterialPageRoute(
+                builder: (BuildContext context) => new AddData(),
+              )),
             ),
             body: FutureBuilder<List>(
-              future: getData(),
+              future: getdata(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) print(snapshot.error);
                 return snapshot.hasData
