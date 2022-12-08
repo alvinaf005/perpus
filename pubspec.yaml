@@ -39,6 +39,9 @@ dependencies:
   custom_navigator: ^0.3.0 
   get: ^4.6.5
   shared_preferences: ^2.0.15
+  path_provider: ^2.0.11
+  open_file: ^3.2.1
+  syncfusion_flutter_pdf: ^20.3.59
   intl: ^0.17.0
 dev_dependencies:
   flutter_test:

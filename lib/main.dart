@@ -1,4 +1,4 @@
-import './datapengguna/masukpage.dart';
+import '../datapengguna/masukpage.dart';
 import 'package:flutter/material.dart';
 
 void main() async {

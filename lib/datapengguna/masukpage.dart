@@ -227,7 +227,6 @@ class _MasukPageState extends State<MasukPage> {
                             }));
                           },
                           color: Color(0xffffffff),
-                          elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                             side:
@@ -268,7 +267,6 @@ class _MasukPageState extends State<MasukPage> {
                             });
                           },
                           color: Color(0xff3a57e8),
-                          elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),

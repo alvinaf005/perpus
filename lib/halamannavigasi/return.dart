@@ -93,32 +93,33 @@ class ItemList extends StatelessWidget {
                   builder: (BuildContext context) =>
                       ReturnBuku(list: list, index: index))),
               child: Card(
-                color: Color.fromARGB(255, 221, 141, 208),
+                shadowColor: Color(0xff000000),
+                elevation: 8,
+                color: Color.fromARGB(255, 68, 227, 255),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(5),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(16, 16, 0, 4),
+                          child: Text(
+                            "Judul Buku                        : ${list[index]["judul_buku"]}",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "Judul Buku                  : ${list[index]["judul_buku"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      "ID Buku              : ${list[index]["id_buku"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      "Tanggal Peminjaman   : ${list[index]["tgl_peminjaman"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      "Tanggal Pengembalian : ${list[index]["tgl_pengembalian"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                    ),
+                    Row(children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(16, 4, 0, 16),
+                        child: Text(
+                          "Tanggal Pengembalian   : ${list[index]["tgl_pengembalian"]}",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ])
                   ],
                 ),
               ),

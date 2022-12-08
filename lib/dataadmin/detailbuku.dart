@@ -1,3 +1,4 @@
+import '../dataadmin/admin.dart';
 import '../halamannavigasi/beranda.dart';
 import 'package:flutter/material.dart';
 import 'editdata.dart';
@@ -14,8 +15,9 @@ class DetailBuku extends StatefulWidget {
 
 class _DetailBukuState extends State<DetailBuku> {
   void deleteData() {
+    final id_buku = '${widget.list[widget.index]['id_buku']}';
     var url = Uri.parse('http://10.0.2.2/bukuperpus/deletedata.php');
-    http.post(url, body: {'id': widget.list[widget.index]['id']});
+    http.post(url, body: {'id_buku': id_buku});
   }
 
   void confirm() {
@@ -31,9 +33,9 @@ class _DetailBukuState extends State<DetailBuku> {
             color: Color.fromARGB(255, 255, 0, 0),
             onPressed: () {
               deleteData();
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => BerandaPage(),
-              ));
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return AdminPage();
+              }));
             }),
         RaisedButton(
             child: Text("Kembali", style: TextStyle(color: Colors.black)),
@@ -69,7 +71,7 @@ class _DetailBukuState extends State<DetailBuku> {
                 style: TextStyle(fontSize: 14),
               ),
               Text(
-                "Barcode : ${widget.list[widget.index]['id']}",
+                "Barcode : ${widget.list[widget.index]['id_buku']}",
                 style: TextStyle(fontSize: 14),
               ),
               Text(

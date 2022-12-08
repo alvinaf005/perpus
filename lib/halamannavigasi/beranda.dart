@@ -75,11 +75,18 @@ class ItemList extends StatelessWidget {
                   builder: (BuildContext context) =>
                       DetailBuku(list: list, index: index))),
               child: Card(
+                  color: Color.fromARGB(255, 68, 227, 255),
+                  shadowColor: Color(0xff000000),
+                  elevation: 8,
                   child: ListTile(
-                title: Text(list[index]["judul_buku"]),
-                leading: Icon(Icons.book),
-                subtitle: Text("${list[index]['pengarang']}"),
-              )),
+                    leading: Icon(Icons.book),
+                    title: Text(
+                      list[index]["judul_buku"],
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text("${list[index]['pengarang']}"),
+                  )),
             ));
       },
     );

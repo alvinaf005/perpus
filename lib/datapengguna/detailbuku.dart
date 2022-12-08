@@ -55,12 +55,98 @@ class _DetailBukuState extends State<DetailBuku> {
         content: Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text("Apakah anda yakin ingin meminjam :"),
-        Text("Nama       : ${nama} "),
-        Text("NIM        : ${nim} "),
-        Text("Jurusan    : ${jurusan} "),
-        Text("Judul Buku : ${widget.list[widget.index]['judul_buku']} "),
-        Text("ID Buku    : ${widget.list[widget.index]['id_buku']} "),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "Apakah anda yakin ingin meminjam :",
+                style: TextStyle(),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "Nama               : ",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: Text(
+                "${nama}",
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "NIM                  : ",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: Text(
+                "${nim}",
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "Jurusan            : ",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: Text(
+                "${jurusan}",
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "Judul Buku      : ",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: Text(
+                "${widget.list[widget.index]['judul_buku']}",
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "ID Buku            : ",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: Text(
+                "${widget.list[widget.index]['id_buku']}",
+              ),
+            ),
+          ],
+        ),
         TextField(
             controller: tgl_pinjam,
             decoration: const InputDecoration(
@@ -109,22 +195,45 @@ class _DetailBukuState extends State<DetailBuku> {
                 print("Pilih Tanggal terlebih dahulu!");
               }
             }),
-        RaisedButton(
-            child: Text(
-              "Yakin",
-              style: TextStyle(color: Colors.black),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Text(
+                  "Kembali",
+                ),
+                color: Colors.green,
+                onPressed: () => Navigator.pop(context),
+                textColor: Color(0xffffffff),
+              ),
             ),
-            color: Color.fromARGB(255, 0, 166, 255),
-            onPressed: () {
-              pinjam();
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => IndexingPage(),
-              ));
-            }),
-        RaisedButton(
-            child: Text("Kembali", style: TextStyle(color: Colors.black)),
-            color: Colors.green,
-            onPressed: () => Navigator.pop(context))
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Text(
+                  "Yakin",
+                ),
+                color: Colors.blue,
+                onPressed: () {
+                  pinjam();
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => IndexingPage(),
+                  ));
+                },
+                textColor: Color(0xffffffff),
+              ),
+            ),
+          ],
+        ),
       ],
     ));
     showDialog(builder: (context) => alertDialog, context: context);
@@ -133,56 +242,192 @@ class _DetailBukuState extends State<DetailBuku> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('${widget.list[widget.index]['judul_buku']}')),
-      body: Container(
-        height: 270,
-        padding: EdgeInsets.all(15),
-        child: Card(
-          child: Center(
-              child: Column(
-            children: <Widget>[
-              Padding(padding: const EdgeInsets.only(top: 25)),
-              Text(
-                widget.list[widget.index]['judul_buku'],
-                style: TextStyle(fontSize: 14),
-              ),
-              Text(
-                widget.list[widget.index]['tahun_terbit'],
-                style: TextStyle(fontSize: 14),
-              ),
-              Text(
-                widget.list[widget.index]['tempat_terbit'],
-                style: TextStyle(fontSize: 14),
-              ),
-              Text(
-                "Barcode : ${widget.list[widget.index]['id_buku']}",
-                style: TextStyle(fontSize: 14),
-              ),
-              Text(
-                "Pengarang : ${widget.list[widget.index]['pengarang']}",
-                style: TextStyle(fontSize: 14),
-              ),
-              Text(
-                "Penerbit : ${widget.list[widget.index]['penerbit']}",
-                style: TextStyle(fontSize: 14),
-              ),
-              Text(
-                "Rak : ${widget.list[widget.index]['rak']}",
-                style: TextStyle(fontSize: 14),
-              ),
-              Padding(padding: const EdgeInsets.only(top: 25)),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  RaisedButton(
-                    child: Text("Pinjam"),
-                    color: Colors.blue,
-                    onPressed: () => confirm(),
+      appBar: AppBar(
+        elevation: 4,
+        centerTitle: true,
+        title: Text(
+          "Detail Buku",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            color: Color(0xfff9f9f9),
+          ),
+        ),
+      ),
+      body: Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Card(
+                  margin: EdgeInsets.all(4.0),
+                  color: Color.fromARGB(255, 68, 227, 255),
+                  shadowColor: Color(0xff000000),
+                  elevation: 8,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
+                            child: Text(
+                              "Judul Buku       : ",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                            child: Text(
+                              "${widget.list[widget.index]['judul_buku']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
+                            child: Text(
+                              "Tahun Terbit     : ",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                            child: Text(
+                              "${widget.list[widget.index]['tahun_terbit']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
+                            child: Text(
+                              "Tempat Terbit  : ",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                            child: Text(
+                              "${widget.list[widget.index]['tempat_terbit']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
+                            child: Text(
+                              "Barcode            : ",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                            child: Text(
+                              "${widget.list[widget.index]['id_buku']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
+                            child: Text(
+                              "Pengarang        : ",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                            child: Text(
+                              "${widget.list[widget.index]['pengarang']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
+                            child: Text(
+                              "Rak                    : ",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                            child: Text(
+                              "${widget.list[widget.index]['rak']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(16),
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Text(
+                                "Pinjam",
+                              ),
+                              color: Color.fromARGB(255, 255, 118, 64),
+                              onPressed: () => confirm(),
+                              textColor: Color(0xffffffff),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              )
-            ],
-          )),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

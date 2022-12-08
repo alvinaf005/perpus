@@ -88,38 +88,169 @@ class ItemList extends StatelessWidget {
         return Container(
             padding: const EdgeInsets.all(5),
             child: GestureDetector(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      DetailRiwayat(list: list, index: index))),
               child: Card(
-                color: Color.fromARGB(255, 221, 141, 208),
+                shadowColor: Color(0xff000000),
+                elevation: 8,
+                color: Color.fromARGB(255, 68, 227, 255),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                    ),
-                    Text(
-                      "Judul Buku                  : ${list[index]["judul_buku"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      "ID Buku              : ${list[index]["id_buku"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      "Tanggal Peminjaman   : ${list[index]["tgl_peminjaman"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      "Tanggal Pengembalian : ${list[index]["tgl_pengembalian"]}",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Text(
+                            "${list[index]["judul_buku"]}",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ));
       },
+    );
+  }
+}
+
+class DetailRiwayat extends StatefulWidget {
+  List list;
+  int index;
+  DetailRiwayat({required this.index, required this.list});
+
+  @override
+  _DetailRiwayatState createState() => _DetailRiwayatState();
+}
+
+class _DetailRiwayatState extends State<DetailRiwayat> {
+  void deleteData() {
+    var url = Uri.parse('http://10.0.2.2/bukuperpus/pengembalianbuku.php');
+    http.post(url, body: {'id_buku': widget.list[widget.index]['id_buku']});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text('Riwayat : ${widget.list[widget.index]['judul_buku']}')),
+      body: Container(
+        height: 270,
+        padding: EdgeInsets.all(15),
+        child: Card(
+          color: Color.fromARGB(255, 68, 227, 255),
+          shadowColor: Color(0xff000000),
+          elevation: 8,
+          child: Center(
+              child: Column(
+            children: <Widget>[
+              Padding(padding: const EdgeInsets.only(top: 25)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "Judul Buku",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "${widget.list[widget.index]['judul_buku']}",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "Barcode",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "${widget.list[widget.index]['id_buku']}",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "Tanggal Peminjaman",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "${widget.list[widget.index]['tgl_peminjaman']}",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "Tanggal Pengembalian",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    child: Text(
+                      "${widget.list[widget.index]['tgl_pengembalian']}",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          )),
+        ),
+      ),
     );
   }
 }
