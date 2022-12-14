@@ -1,5 +1,5 @@
-import '../dataadmin/admin.dart';
-import '../halamannavigasi/beranda.dart';
+import 'package:perpus/dataadmin/admin.dart';
+import 'package:perpus/halamannavigasi/beranda.dart';
 import 'package:flutter/material.dart';
 import 'editdata.dart';
 import 'package:http/http.dart' as http;

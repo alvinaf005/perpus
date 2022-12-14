@@ -1,4 +1,4 @@
-import '../halamannavigasi/indexing.dart';
+import 'package:perpus/halamannavigasi/indexing.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -58,91 +58,156 @@ class _DetailBukuState extends State<DetailBuku> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "Apakah anda yakin ingin meminjam :",
-                style: TextStyle(),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "Apakah anda yakin ingin meminjam :",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
           ],
         ),
         Row(
           children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "Nama               : ",
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "Nama             : ",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(0),
-              child: Text(
-                "${nama}",
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "NIM                  : ",
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(0),
-              child: Text(
-                "${nim}",
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "${nama}",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
           ],
         ),
         Row(
           children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "Jurusan            : ",
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "NIM                : ",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(0),
-              child: Text(
-                "${jurusan}",
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "Judul Buku      : ",
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(0),
-              child: Text(
-                "${widget.list[widget.index]['judul_buku']}",
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "${nim}",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
           ],
         ),
         Row(
           children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "ID Buku            : ",
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "Jurusan         : ",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(0),
-              child: Text(
-                "${widget.list[widget.index]['id_buku']}",
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "${jurusan}",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "Judul Buku    : ",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "${widget.list[widget.index]['judul_buku']}",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "ID Buku          : ",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  "${widget.list[widget.index]['id_buku']}",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(),
+                ),
               ),
             ),
           ],

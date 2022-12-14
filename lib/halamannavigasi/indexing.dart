@@ -1,9 +1,9 @@
-import '../datapengguna/masukpage.dart';
+import 'package:perpus/datapengguna/masukpage.dart';
 import 'package:flutter/material.dart';
-import '../halamannavigasi/beranda.dart';
-import '../halamannavigasi/riwayat.dart';
-import '../halamannavigasi/return.dart';
-import '../halamannavigasi/profile.dart';
+import 'package:perpus/halamannavigasi/beranda.dart';
+import 'package:perpus/halamannavigasi/riwayat.dart';
+import 'package:perpus/halamannavigasi/return.dart';
+import 'package:perpus/halamannavigasi/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IndexingPage extends StatefulWidget {

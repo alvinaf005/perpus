@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -8,7 +6,7 @@ import 'mobile.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../halamannavigasi/indexing.dart';
+import 'package:perpus/halamannavigasi/indexing.dart';
 
 class ReturnBuku extends StatefulWidget {
   List list;
@@ -119,9 +117,10 @@ class _ReturnBukuState extends State<ReturnBuku> {
               color: Color.fromARGB(255, 255, 0, 0),
               onPressed: () {
                 deleteData();
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => IndexingPage(),
-                ));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => IndexingPage()),
+                ).then((value) => setState(() {}));
               }),
           RaisedButton(
               shape: RoundedRectangleBorder(

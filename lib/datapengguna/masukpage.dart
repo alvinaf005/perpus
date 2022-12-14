@@ -1,11 +1,11 @@
 import 'dart:convert';
-import '../dataadmin/admin.dart';
-import '../datapengguna/getpengguna.dart';
+import 'package:perpus/dataadmin/admin.dart';
+import 'package:perpus/datapengguna/getpengguna.dart';
 import 'package:flutter/material.dart';
-import '../datapengguna/DaftarPage.dart';
+import 'package:perpus/datapengguna/DaftarPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import '../halamannavigasi/indexing.dart';
+import 'package:perpus/halamannavigasi/indexing.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 

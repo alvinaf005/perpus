@@ -1,4 +1,4 @@
-import '../datapengguna/masukpage.dart';
+import 'package:perpus/datapengguna/masukpage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -93,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "Nama",
                               style: TextStyle(
@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${nama}",
                               style: TextStyle(
@@ -116,7 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "NIM",
                               style: TextStyle(
@@ -125,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${nim}",
                               style: TextStyle(
@@ -139,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "Fakultas",
                               style: TextStyle(
@@ -148,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${fakultas}",
                               style: TextStyle(
@@ -162,7 +162,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "Jurusan",
                               style: TextStyle(
@@ -171,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${jurusan}",
                               style: TextStyle(
@@ -185,7 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "Prodi",
                               style: TextStyle(
@@ -194,9 +194,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${prodi}",
+                              overflow: TextOverflow.clip,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -208,7 +209,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "Domisili",
                               style: TextStyle(
@@ -217,7 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${domisili}",
                               style: TextStyle(
@@ -231,7 +232,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(16, 14, 0, 14),
                             child: Text(
                               "No. Telp",
                               style: TextStyle(
@@ -240,7 +241,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 14, 16, 14),
+                            padding: EdgeInsets.fromLTRB(0, 14, 16, 14),
                             child: Text(
                               "${no_telp}",
                               style: TextStyle(

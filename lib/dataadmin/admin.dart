@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import '../dataadmin/adddata.dart';
-import '../datapengguna/masukpage.dart';
-import '../dataadmin/detailbuku.dart';
+import 'package:perpus/dataadmin/adddata.dart';
+import 'package:perpus/datapengguna/masukpage.dart';
+import 'package:perpus/dataadmin/detailbuku.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
@@ -17,6 +17,7 @@ class _AdminPageState extends State<AdminPage> {
   Future<List> getdata() async {
     final response =
         await http.get(Uri.parse('http://10.0.2.2/bukuperpus/getdata.php'));
+    print(response.body);
     return jsonDecode(response.body);
   }
 
@@ -84,7 +85,6 @@ class _AdminPageState extends State<AdminPage> {
 class ItemList extends StatelessWidget {
   final List list;
   ItemList({required this.list});
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -98,9 +98,10 @@ class ItemList extends StatelessWidget {
                       DetailBuku(list: list, index: index))),
               child: Card(
                   child: ListTile(
-                title: Text(list[index]["judul_buku"]),
+                title: Text(
+                    "${list[index]["judul_buku"]}   ( ${list[index]['pinjam']} )"),
                 leading: Icon(Icons.book),
-                subtitle: Text("${list[index]['pengarang']}"),
+                subtitle: Text("${list[index]['pengarang']} "),
               )),
             ));
       },

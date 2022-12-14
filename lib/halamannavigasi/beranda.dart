@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import '../datapengguna/detailbuku.dart';
+import 'package:perpus/datapengguna/detailbuku.dart';
 
 class BerandaPage extends StatefulWidget {
   @override
@@ -81,7 +81,7 @@ class ItemList extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(Icons.book),
                     title: Text(
-                      list[index]["judul_buku"],
+                      "${list[index]["judul_buku"]}   ( ${list[index]["pinjam"]} )",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
